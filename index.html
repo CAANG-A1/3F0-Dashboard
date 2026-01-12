@@ -255,6 +255,12 @@
                                     <option value="18">18 Years</option>
                                     <option value="20" selected>Over 20 Years</option>
                                     <option value="22">Over 22 Years</option>
+                                    <option value="24">Over 24 Years</option>
+                                    <option value="26">Over 26 Years</option>
+                                    <option value="30">Over 30 Years</option>
+                                    <option value="34">Over 34 Years</option>
+                                    <option value="38">Over 38 Years</option>
+                                    <option value="40">Over 40 Years</option>
                                 </select>
                             </div>
                             <div class="pt-4 border-t border-slate-100 flex justify-between items-center"><span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Est. Basic Pay</span><span id="basic-pay-display" class="text-xl font-mono font-bold text-slate-800">$0.00</span></div>
@@ -496,19 +502,20 @@
 
     <script>
         // --- SHARED DATA ---
+        // Expanded with longevity milestones up to 40 years for applicable ranks
         const PAY_CHART = {
-            "E-4": { "18": 3815, "20": 3815, "22": 3815 },
-            "E-5": { "18": 4510, "20": 4510, "22": 4510 },
-            "E-6": { "18": 5268, "20": 5268, "22": 5268 },
-            "E-7": { "18": 6177, "20": 6246, "22": 6475 },
-            "E-8": { "18": 6811, "20": 6995, "22": 7308 },
-            "E-9": { "18": 7731, "20": 8105, "22": 8423 },
-            "O-1": { "18": 5222, "20": 5222, "22": 5222 },
-            "O-2": { "18": 6272, "20": 6272, "22": 6272 },
-            "O-3": { "18": 9004, "20": 9004, "22": 9004 },
-            "O-4": { "18": 10509, "20": 10509, "22": 10509 },
-            "O-5": { "18": 11714, "20": 12033, "22": 12395 },
-            "O-6": { "18": 13116, "20": 13751, "22": 14113 }
+            "E-4": { "18": 3815, "20": 3815, "22": 3815, "24": 3815, "26": 3815, "30": 3815, "34": 3815, "38": 3815, "40": 3815 },
+            "E-5": { "18": 4510, "20": 4510, "22": 4510, "24": 4510, "26": 4510, "30": 4510, "34": 4510, "38": 4510, "40": 4510 },
+            "E-6": { "18": 5268, "20": 5268, "22": 5268, "24": 5268, "26": 5268, "30": 5268, "34": 5268, "38": 5268, "40": 5268 },
+            "E-7": { "18": 6177, "20": 6246, "22": 6475, "24": 6625, "26": 7083, "30": 7083, "34": 7083, "38": 7083, "40": 7083 },
+            "E-8": { "18": 6811, "20": 6995, "22": 7308, "24": 7514, "26": 7949, "30": 8107, "34": 8107, "38": 8107, "40": 8107 },
+            "E-9": { "18": 7731, "20": 8105, "22": 8423, "24": 8769, "26": 9276, "30": 9741, "34": 10228, "38": 10740, "40": 11277 },
+            "O-1": { "18": 5222, "20": 5222, "22": 5222, "24": 5222, "26": 5222, "30": 5222, "34": 5222, "38": 5222, "40": 5222 },
+            "O-2": { "18": 6272, "20": 6272, "22": 6272, "24": 6272, "26": 6272, "30": 6272, "34": 6272, "38": 6272, "40": 6272 },
+            "O-3": { "18": 9004, "20": 9004, "22": 9004, "24": 9004, "26": 9004, "30": 9004, "34": 9004, "38": 9004, "40": 9004 },
+            "O-4": { "18": 10509, "20": 10509, "22": 10509, "24": 10509, "26": 10509, "30": 10509, "34": 10509, "38": 10509, "40": 10509 },
+            "O-5": { "18": 11714, "20": 12033, "22": 12395, "24": 12450, "26": 12450, "30": 12450, "34": 12450, "38": 12450, "40": 12450 },
+            "O-6": { "18": 13116, "20": 13751, "22": 14113, "24": 14480, "26": 15190, "30": 15494, "34": 15804, "38": 16120, "40": 16442 }
         };
 
         const EXEMPT_TYPES = ['AGR', 'ADT', 'AT', 'School'];
@@ -734,8 +741,6 @@
                 const m = l.match(dateRegex); 
                 
                 // --- ENHANCED EXCLUSION ---
-                // Specifically look for Z-status codes like Z, ZR, ZV, etc. 
-                // These are usually in the status column toward the end of the line.
                 const isZRow = /\sZ[A-Z]?\s/i.test(l) || l.trim().endsWith(' Z') || l.trim().includes(' Z ');
 
                 if (m && m.length === 2 && !isZRow) { 
@@ -758,11 +763,10 @@
                         const rawPts = parseInt(numericTokens[0]);
                         const rawTd = parseInt(numericTokens[1]);
                         
-                        // "if the data in that column [TD] is greater than 5, it should change the total in the PTS column to 0"
+                        // Rule: TD > 5 means 0 PTS for calculation purposes
                         ptsValue = (rawTd > 5) ? 0 : rawPts;
                     } else if (numericTokens.length >= 5) {
                         // Service History Section: [AD, IDT, IDS, ECI, MBR, TOTAL, RETIRE, SATSVC, (QUAL)]
-                        // In history section, we only care about the AD point column (index 0)
                         ptsValue = parseInt(numericTokens[0]);
                     } else if (numericTokens.length === 1) {
                         ptsValue = parseInt(numericTokens[0]);
