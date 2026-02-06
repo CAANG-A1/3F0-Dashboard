@@ -140,7 +140,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                <!-- Existing tools -->
                 <div onclick="showView('planner')" class="calc-card group p-6 rounded-[32px] shadow-sm hover:shadow-2xl transition-all cursor-pointer relative overflow-hidden flex flex-col border border-slate-200">
                     <div class="card-icon w-12 h-12 bg-blue-50 rounded-[16px] flex items-center justify-center text-blue-600 mb-4 transition-transform duration-300"><i data-lucide="calculator" class="w-8 h-8"></i></div>
                     <h3 class="text-base font-black text-slate-800 mb-1 uppercase tracking-tight leading-none">TAFMS Planner</h3>
@@ -148,504 +147,701 @@
                     <div class="flex items-center text-blue-600 font-bold text-[9px] uppercase tracking-widest gap-2">Open <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-2 transition-transform"></i></div>
                 </div>
 
-                <!-- ... other existing cards (auditor, durations, 1825, scod) ... -->
+                <div onclick="showView('auditor')" class="calc-card group p-6 rounded-[32px] shadow-sm hover:shadow-2xl transition-all cursor-pointer relative overflow-hidden flex flex-col border border-slate-200">
+                    <div class="card-icon w-12 h-12 bg-indigo-50 rounded-[16px] flex items-center justify-center text-indigo-600 mb-4 transition-transform duration-300"><i data-lucide="history" class="w-8 h-8"></i></div>
+                    <h3 class="text-base font-black text-slate-800 mb-1 uppercase tracking-tight leading-none">TAFMSD Auditor</h3>
+                    <p class="text-slate-500 text-[10px] leading-relaxed mb-6 font-medium flex-grow uppercase">Compute start dates via backward logic.</p>
+                    <div class="flex items-center text-indigo-600 font-bold text-[9px] uppercase tracking-widest gap-2">Open <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-2 transition-transform"></i></div>
+                </div>
 
-                <!-- NEW: SNCO Promotion Terminal card -->
-                <div onclick="showView('snco')" class="calc-card group p-6 rounded-[32px] shadow-sm hover:shadow-2xl transition-all cursor-pointer relative overflow-hidden flex flex-col border border-slate-200">
-                    <div class="card-icon w-12 h-12 bg-blue-50 rounded-[16px] flex items-center justify-center text-blue-600 mb-4 transition-transform duration-300">
-                        <i data-lucide="shield-check" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-base font-black text-slate-800 mb-1 uppercase tracking-tight leading-none">
-                        SNCO Promotion Terminal
-                    </h3>
-                    <p class="text-slate-500 text-[10px] leading-relaxed mb-6 font-medium flex-grow uppercase">
-                        Promotion folder compliance engine.
-                    </p>
-                    <div class="flex items-center text-blue-600 font-bold text-[9px] uppercase tracking-widest gap-2">
-                        Open <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-2 transition-transform"></i>
-                    </div>
+                <div onclick="showView('durations')" class="calc-card group p-6 rounded-[32px] shadow-sm hover:shadow-2xl transition-all cursor-pointer relative overflow-hidden flex flex-col border border-slate-200">
+                    <div class="card-icon w-12 h-12 bg-emerald-50 rounded-[16px] flex items-center justify-center text-emerald-600 mb-4 transition-transform duration-300"><i data-lucide="calendar" class="w-8 h-8"></i></div>
+                    <h3 class="text-base font-black text-slate-800 mb-1 uppercase tracking-tight leading-none">Service Dates</h3>
+                    <p class="text-slate-500 text-[10px] leading-relaxed mb-6 font-medium flex-grow uppercase">Compute TIG and TIS durations.</p>
+                    <div class="flex items-center text-emerald-600 font-bold text-[9px] uppercase tracking-widest gap-2">Open <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-2 transition-transform"></i></div>
+                </div>
+
+                <div onclick="showView('1825')" class="calc-card group p-6 rounded-[32px] shadow-sm hover:shadow-2xl transition-all cursor-pointer relative overflow-hidden flex flex-col border border-slate-200">
+                    <div class="card-icon w-12 h-12 bg-amber-50 rounded-[16px] flex items-center justify-center text-amber-600 mb-4 transition-transform duration-300"><i data-lucide="shield" class="w-8 h-8"></i></div>
+                    <h3 class="text-base font-black text-slate-800 mb-1 uppercase tracking-tight leading-none">1825 Rule</h3>
+                    <p class="text-slate-500 text-[10px] leading-relaxed mb-6 font-medium flex-grow uppercase">Track rolling window AD caps.</p>
+                    <div class="flex items-center text-amber-600 font-bold text-[9px] uppercase tracking-widest gap-2">Open <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-2 transition-transform"></i></div>
+                </div>
+
+                <div onclick="showView('scod')" class="calc-card group p-6 rounded-[40px] shadow-sm hover:shadow-2xl transition-all cursor-pointer relative overflow-hidden flex flex-col border border-slate-200">
+                    <div class="card-icon w-14 h-14 bg-rose-50 rounded-[20px] flex items-center justify-center text-rose-600 mb-4 transition-transform duration-300"><i data-lucide="file-text" class="w-8 h-8"></i></div>
+                    <h3 class="text-base font-black text-slate-800 mb-1 uppercase tracking-tight leading-none">SCOD Engine</h3>
+                    <p class="text-slate-500 text-[10px] leading-relaxed mb-6 font-medium flex-grow uppercase">Track eval closeout deadlines.</p>
+                    <div class="flex items-center text-rose-600 font-bold text-[10px] uppercase tracking-widest gap-2">Open <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-2 transition-transform"></i></div>
                 </div>
             </div>
         </div>
 
-        <!-- Existing views: planner, auditor, durations, 1825, scod -->
-        <!-- (keep your current HTML for these views unchanged) -->
+        <!-- VIEW: TAFMS PLANNER -->
+        <div id="view-planner" class="hidden animate-in fade-in duration-300 relative z-10">
+            <header class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-blue-900 uppercase tracking-widest leading-none">ANG TAFMS & Retirement Planner</h1>
+                    <div class="flex items-center gap-2 mt-1 no-print">
+                        <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest">Military Personnel Arithmetic</span>
+                        <p class="text-slate-500 text-sm">30-Day Month logic with Year conversion (Total Days ÷ 360)</p>
+                    </div>
+                </div>
+                <div id="tafms-badge" class="bg-blue-600 text-white px-6 py-3 rounded-2xl shadow-lg flex items-center gap-4">
+                    <div class="text-right">
+                        <p class="text-xs opacity-80 uppercase font-bold tracking-wider">Total TAFMS</p>
+                        <p id="total-tafms-display" class="text-xl md:text-2xl font-mono whitespace-nowrap uppercase">0.00 Yrs (0 Days)</p>
+                    </div>
+                    <i data-lucide="clock" class="w-8 h-8 opacity-50"></i>
+                </div>
+            </header>
 
-        <!-- VIEW: SNCO PROMOTION TERMINAL -->
-        <div id="view-snco" class="hidden animate-in fade-in duration-300 relative z-10">
-            <div class="max-w-6xl mx-auto space-y-6">
-                <!-- HEADER -->
-                <header class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 flex justify-between items-center no-print">
+            <div class="mb-8 no-print">
+                <div class="bg-blue-900 text-white p-6 rounded-3xl shadow-md flex flex-col md:flex-row items-center justify-between gap-4 border-b-4 border-blue-700">
                     <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white">
-                            <i data-lucide="shield-check" class="w-8 h-8"></i>
-                        </div>
+                        <div class="bg-blue-800 p-3 rounded-2xl"><i data-lucide="filter" class="w-6 h-6 text-blue-300"></i></div>
                         <div>
-                            <h1 class="text-2xl font-black tracking-tight uppercase italic tracking-tighter leading-none">SNCO Promotion Terminal</h1>
-                            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">California Air National Guard | MPF Compliance Hub</p>
+                            <h3 class="font-bold text-lg leading-tight uppercase tracking-widest">Calculation Cutoff Date</h3>
+                            <p class="text-blue-300 text-xs font-medium uppercase">Determine points accrued prior to a specific date.</p>
                         </div>
                     </div>
-                    <div class="flex gap-2">
-                        <button onclick="window.print()" class="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 rounded-xl text-slate-700 font-black text-xs flex items-center gap-2 uppercase tracking-widest transition-all">
-                            <i data-lucide="printer" class="w-4 h-4"></i> Print Review
-                        </button>
-                        <button onclick="location.reload()" class="p-3 text-slate-400 hover:text-red-500 transition-colors">
-                            <i data-lucide="trash-2" class="w-5 h-5"></i>
-                        </button>
-                    </div>
-                </header>
-
-                <!-- STEPPER -->
-                <div class="bg-white rounded-[32px] shadow-sm border border-slate-200 p-8 no-print">
-                    <div id="stepper-container" class="flex justify-between items-start max-w-3xl mx-auto">
-                        <!-- Injected by JS -->
+                    <div class="flex items-center gap-2">
+                        <input type="date" id="cutoff-date" class="bg-blue-800 border border-blue-700 text-white px-4 py-2 rounded-xl outline-none focus:ring-2 focus:ring-blue-400 font-bold" oninput="calculate()">
+                        <button onclick="document.getElementById('cutoff-date').value = ''; calculate();" class="text-xs font-bold uppercase opacity-60 hover:opacity-100 transition-opacity">Clear</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                    <!-- MAIN FORM AREA -->
-                    <div class="lg:col-span-8 bg-white rounded-[40px] shadow-sm border border-slate-200 min-h-[600px] flex flex-col overflow-hidden relative">
-                        <div class="flex-1 p-8 md:p-12">
-                            <!-- STEP 1: IDENTITY -->
-                            <div id="step-1" class="snco-step space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                                <div class="border-b border-slate-100 pb-4">
-                                    <h2 class="text-2xl font-black tracking-tight uppercase italic tracking-tighter">1. Member Identification</h2>
-                                    <p class="text-slate-500 text-sm italic">Define candidate logic and component status.</p>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div class="space-y-2">
-                                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Candidate Name</label>
-                                        <input type="text" id="prof-name" oninput="sncoUpdateField('profile', 'name', this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 font-bold uppercase outline-none focus:ring-2 focus:ring-blue-500" placeholder="DOE, JANE A">
-                                    </div>
-                                    <div class="space-y-2">
-                                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Assigned Unit</label>
-                                        <input type="text" id="prof-unit" oninput="sncoUpdateField('profile', 'unit', this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 font-bold uppercase outline-none focus:ring-2 focus:ring-blue-500" placeholder="144 FW / FSS">
-                                    </div>
-                                    <div class="space-y-2">
-                                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Target Rank</label>
-                                        <select id="prof-rank" onchange="sncoUpdateField('profile', 'targetRank', this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 font-bold outline-none">
-                                            <option value="TSgt">TSgt (E-6)</option>
-                                            <option value="MSgt" selected>MSgt (E-7)</option>
-                                            <option value="SMSgt">SMSgt (E-8)</option>
-                                            <option value="CMSgt">CMSgt (E-9)</option>
-                                        </select>
-                                    </div>
-                                    <div class="space-y-2">
-                                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Program Logic</label>
-                                        <select id="prof-package" onchange="sncoUpdateField('profile', 'packageType', this.value)" class="w-full border-2 bg-slate-50 border-slate-200 rounded-2xl p-4 font-bold outline-none text-blue-600">
-                                            <option value="Standard">Standard Vacancy</option>
-                                            <option value="STEP_I">STEP I (E6/E7)</option>
-                                            <option value="STEP_II">STEP II (E8/E9)</option>
-                                            <option value="Retraining">Retraining Promotion</option>
-                                        </select>
-                                    </div>
-                                    <div class="space-y-2 md:col-span-2">
-                                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Component Status</label>
-                                        <div id="component-toggle" class="flex bg-slate-100 rounded-xl p-1 gap-1">
-                                            <!-- Injected by JS -->
-                                        </div>
-                                    </div>
-                                </div>
+            <div class="mb-8 no-print">
+                <div class="bg-white/90 backdrop-blur border border-slate-200 rounded-3xl p-6 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2"><i data-lucide="zap" class="w-5 h-5 text-yellow-500"></i> Quick Import from PCARS</h3>
+                    <p class="text-slate-500 text-sm mb-4">Paste text from your Point Credit Summary. TD > 5 logic and Z-status rows will be filtered automatically.</p>
+                    <textarea id="pcars-input" placeholder="Paste PCARS text here..." class="w-full h-24 p-4 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none resize-none mb-3"></textarea>
+                    <div class="flex justify-between items-center">
+                        <button onclick="parseText()" class="bg-blue-600 text-white px-8 py-2.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition-all flex items-center gap-2 uppercase tracking-widest leading-none"><i data-lucide="search" class="w-4 h-4"></i> Scan Text</button>
+                        <div id="parse-status" class="text-xs font-bold text-blue-500 hidden items-center gap-1 uppercase tracking-tight"><i data-lucide="check" class="w-3 h-3"></i> <span id="parse-status-text">Scanned successfully</span></div>
+                    </div>
+                </div>
+            </div>
 
-                                <div id="step1-extra" class="hidden p-6 bg-purple-50 rounded-3xl border border-purple-100 space-y-6">
-                                    <h3 class="text-xs font-black uppercase text-purple-800 tracking-widest flex items-center gap-2"><i data-lucide="star" class="w-4 h-4"></i> STEP I Program Controls</h3>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div class="flex items-center justify-between p-3 bg-white rounded-xl border border-purple-200 cursor-pointer" onclick="sncoToggleStepFlag('isSoleOccupant')">
-                                            <span class="text-[10px] font-bold text-slate-700">Sole Occupant?</span>
-                                            <input type="checkbox" id="flag-sole" class="w-5 h-5 rounded text-purple-600 pointer-events-none">
-                                        </div>
-                                        <div class="flex items-center justify-between p-3 bg-white rounded-xl border border-purple-200 cursor-pointer" onclick="sncoToggleStepFlag('priorStepToGrade')">
-                                            <span class="text-[10px] font-bold text-slate-700">Prior STEP I to grade?</span>
-                                            <input type="checkbox" id="flag-prior" class="w-5 h-5 rounded text-purple-600 pointer-events-none">
-                                        </div>
-                                    </div>
-                                    <textarea oninput="sncoUpdateField('stepFlags', 'fmpRemarks', this.value)" class="w-full bg-white border border-purple-200 rounded-xl p-3 text-xs min-h-[80px] outline-none" placeholder="Force Management Plan remarks..."></textarea>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-6">
+                    <section class="bg-white/90 backdrop-blur p-6 rounded-3xl shadow-sm border border-slate-200 section-card">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-2">
+                                <h2 class="text-lg font-bold text-blue-900 uppercase tracking-widest">Active Duty Periods (TAFMS)</h2>
+                            </div>
+                            <button onclick="addPeriod()" class="no-print bg-blue-50 text-blue-600 hover:bg-blue-100 px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-1 transition-colors uppercase tracking-widest"><i data-lucide="plus" class="w-4 h-4"></i> Add Period</button>
+                        </div>
+                        <div id="periods-container" class="space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar"></div>
+                    </section>
+
+                    <section class="bg-white/90 backdrop-blur p-6 rounded-3xl shadow-sm border border-slate-200 section-card">
+                        <h2 class="text-lg font-bold flex items-center gap-2 mb-6 text-purple-900 uppercase tracking-widest"><i data-lucide="award" class="w-5 h-5 text-purple-500 no-print"></i> Career Projection</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1 tracking-widest">Total Career Years</label>
+                                    <input type="number" id="career-years" value="20" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-purple-500 outline-none transition-all font-bold" oninput="calculate()">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1 tracking-widest">Avg Drill Points / Year</label>
+                                    <input type="number" id="drill-points" value="48" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-purple-500 outline-none transition-all font-bold" oninput="calculate()">
                                 </div>
                             </div>
-
-                            <!-- STEP 2: SERVICE -->
-                            <div id="step-2" class="snco-step hidden space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-                                <div class="border-b border-slate-100 pb-4">
-                                    <h2 class="text-2xl font-black tracking-tight uppercase tracking-tighter italic leading-none">2. Service Verification</h2>
-                                    <p class="text-slate-500 text-sm">Table 10.1 Service and active duty (TAFMS) data.</p>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div class="space-y-4">
-                                        <div class="space-y-1">
-                                            <label id="tis-label" class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Pay Entry Date (TIS: N/A)</label>
-                                            <input type="date" oninput="sncoUpdateField('service', 'payDate', this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3 text-sm font-bold outline-none">
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label id="tig-label" class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Date of Rank (TIG: N/A)</label>
-                                            <input type="date" oninput="sncoUpdateField('service', 'dor', this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3 text-sm font-bold outline-none">
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label class="text-[10px] font-black text-blue-600 uppercase tracking-widest italic leading-none block mb-1">
-                                                Latest EPB Closeout Date
-                                            </label>
-                                            <input type="date" oninput="sncoUpdateField('service', 'epbDate', this.value)" class="w-full bg-blue-50 border border-blue-100 rounded-2xl p-3 text-sm font-bold outline-none">
-                                        </div>
-                                    </div>
-                                    <div class="space-y-6">
-                                        <div id="tafms-container" class="p-6 rounded-[32px] space-y-4 shadow-xl transition-all">
-                                            <!-- Injected by JS -->
-                                        </div>
-                                        <div class="p-4 bg-slate-50 rounded-3xl border border-slate-200 space-y-4 shadow-inner">
-                                            <div class="grid grid-cols-2 gap-4">
-                                                <div class="space-y-1">
-                                                    <label class="text-[9px] font-bold text-slate-500 uppercase">PAFSC</label>
-                                                    <select onchange="sncoUpdateField('service', 'pafscLevel', this.value)" class="w-full bg-white border border-slate-200 rounded-xl p-2 text-xs font-black">
-                                                        <option value="3">3</option>
-                                                        <option value="5">5</option>
-                                                        <option value="7" selected>7</option>
-                                                        <option value="9">9</option>
-                                                    </select>
-                                                </div>
-                                                <div class="space-y-1">
-                                                    <label class="text-[9px] font-bold text-slate-500 uppercase">DAFSC</label>
-                                                    <select onchange="sncoUpdateField('service', 'dafscLevel', this.value)" class="w-full bg-white border border-slate-200 rounded-xl p-2 text-xs font-black">
-                                                        <option value="1">1</option>
-                                                        <option value="3">3</option>
-                                                        <option value="5">5</option>
-                                                        <option value="7" selected>7</option>
-                                                        <option value="9">9</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- STEP 3: READINESS -->
-                            <div id="step-3" class="snco-step hidden space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-                                <div class="border-b border-slate-100 pb-4">
-                                    <h2 class="text-2xl font-black tracking-tight uppercase tracking-tighter italic leading-none">3. Readiness & Administrative</h2>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div class="space-y-6">
-                                        <div class="grid grid-cols-2 gap-4">
-                                            <div class="space-y-1">
-                                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Fit Score</label>
-                                                <input type="number" oninput="sncoUpdateField('readiness', 'fitScore', this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 font-bold outline-none">
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Date Taken</label>
-                                                <input type="date" oninput="sncoUpdateField('readiness', 'fitDate', this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 font-bold outline-none">
-                                            </div>
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Security Adjudication Date</label>
-                                            <input type="date" id="clearance-input" oninput="sncoUpdateField('readiness', 'clearanceDate', this.value)" class="w-full border-2 rounded-xl p-3 font-bold outline-none bg-slate-50 border-slate-200 transition-all">
-                                        </div>
-                                    </div>
-                                    <div class="bg-slate-50 p-6 rounded-[32px] border border-slate-200 space-y-4 shadow-inner">
-                                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b pb-2 leading-none">Admin Barriers</p>
-                                        <div id="admin-flags" class="space-y-3">
-                                            <!-- Injected by JS -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- STEP 4: VERIFICATION -->
-                            <div id="step-4" class="snco-step hidden space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-                                <div class="border-b border-slate-100 pb-4">
-                                    <h2 class="text-2xl font-black tracking-tight uppercase tracking-tighter italic leading-none">4. Verification & Summary</h2>
-                                </div>
-                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-slate-50 p-8 rounded-[40px] border border-slate-200 shadow-inner">
-                                    <div class="lg:col-span-4 space-y-6">
-                                        <h3 class="font-black text-xs uppercase text-blue-600 flex items-center gap-3"><i data-lucide="gavel" class="w-5 h-5"></i> Board Check</h3>
-                                        <div class="p-6 bg-white rounded-[32px] border border-slate-200 shadow-sm flex items-center justify-between cursor-pointer" onclick="sncoToggleComposition()">
-                                            <div class="space-y-1">
-                                                <p class="text-[10px] font-black uppercase text-slate-700 tracking-tighter">Composition OK?</p>
-                                                <p id="board-req-text" class="text-[9px] text-slate-400 italic font-medium leading-none"></p>
-                                            </div>
-                                            <input type="checkbox" id="board-comp-checkbox" class="w-6 h-6 rounded-md text-blue-600 pointer-events-none">
-                                        </div>
-                                    </div>
-                                    <div class="lg:col-span-8 space-y-6">
-                                        <h3 class="font-black text-xs uppercase text-blue-600 flex items-center gap-3"><i data-lucide="clipboard-list" class="w-5 h-5"></i> Folder Verification</h3>
-                                        <div id="folder-checklist" class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                            <!-- Injected by JS -->
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="bg-slate-50/80 p-6 rounded-3xl flex flex-col justify-center border border-slate-100 shadow-inner text-sm font-black uppercase tracking-tight">
+                                <div class="flex justify-between items-center mb-3"><span class="text-slate-500 text-[10px] tracking-widest">Membership</span><span class="font-bold text-slate-700">15 / yr</span></div>
+                                <div class="flex justify-between items-center mb-3"><span class="text-slate-500 text-[10px] tracking-widest">Reserve Time</span><span id="reserve-years-display" class="font-bold text-purple-700">0.00 Yrs</span></div>
+                                <div class="flex justify-between items-center mb-4 pb-4 border-b border-slate-200"><span class="text-slate-500 text-[10px] tracking-widest">Correspondence</span><input type="number" id="other-points" value="0" class="w-20 bg-transparent text-right font-black text-slate-700 outline-none font-mono" oninput="calculate()"></div>
+                                <div class="flex justify-between items-center"><span class="font-bold text-blue-900 text-xs tracking-widest">Final Projected Points</span><span id="total-points-display" class="text-2xl font-mono font-bold text-blue-600">0</span></div>
                             </div>
                         </div>
+                    </section>
+                </div>
 
-                        <!-- NAVIGATION FOOTER -->
-                        <div class="bg-slate-50 p-8 border-t border-slate-100 flex justify-between items-center no-print">
-                            <button id="prev-btn" onclick="sncoChangeStep(-1)" class="px-8 py-3 text-xs font-black text-slate-400 uppercase tracking-widest hover:text-slate-600 transition-colors">
-                                <i data-lucide="chevron-left" class="inline-block w-4 h-4 mr-1"></i> Back
-                            </button>
-                            <div class="flex gap-4">
-                                <button id="first-sgt-btn" onclick="sncoToggleFirstSgt()" class="px-4 py-2 rounded-xl text-[10px] font-black uppercase border-2 transition-all"></button>
-                                <button id="next-btn" onclick="sncoChangeStep(1)" class="px-10 py-3 bg-blue-600 text-white rounded-xl text-xs font-black shadow-lg hover:bg-blue-700 transition-all uppercase tracking-widest">Continue <i data-lucide="chevron-right" class="inline-block w-4 h-4 ml-1"></i></button>
-                                <div id="final-status-badge" class="hidden px-10 py-3 rounded-xl font-black text-xs uppercase tracking-widest shadow-lg transition-all"></div>
+                <div class="space-y-6">
+                    <div class="bg-white/90 backdrop-blur p-6 rounded-3xl shadow-sm border-2 border-blue-100 no-print">
+                        <h3 class="text-sm font-bold text-blue-900 uppercase tracking-widest mb-6 flex items-center gap-2"><i data-lucide="dollar-sign" class="w-4 h-4"></i> 2026 Pay Estimates</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1 tracking-widest">Estimated Final Rank</label>
+                                <select id="rank-select" class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm font-bold outline-none cursor-pointer" onchange="calculate()">
+                                    <optgroup label="Enlisted">
+                                        <option value="E-4">E-4 Senior Airman</option>
+                                        <option value="E-5">E-5 Staff Sergeant</option>
+                                        <option value="E-6" selected>E-6 Tech Sergeant</option>
+                                        <option value="E-7">E-7 Master Sergeant</option>
+                                        <option value="E-8">E-8 Senior Master Sgt</option>
+                                        <option value="E-9">E-9 Chief Master Sgt</option>
+                                    </optgroup>
+                                    <optgroup label="Officer">
+                                        <option value="O-1">O-1 Second Lieutenant</option>
+                                        <option value="O-2">O-2 First Lieutenant</option>
+                                        <option value="O-3">O-3 Captain</option>
+                                        <option value="O-4">O-4 Major</option>
+                                        <option value="O-5">O-5 Lieutenant Colonel</option>
+                                        <option value="O-6">O-6 Colonel</option>
+                                    </optgroup>
+                                </select>
                             </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1 tracking-widest">Pay Date Longevity</label>
+                                <select id="longevity-select" class="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm font-bold outline-none cursor-pointer" onchange="calculate()">
+                                    <option value="18">18 Years</option>
+                                    <option value="20" selected>Over 20 Years</option>
+                                    <option value="22">Over 22 Years</option>
+                                    <option value="24">Over 24 Years</option>
+                                    <option value="26">Over 26 Years</option>
+                                    <option value="30">Over 30 Years</option>
+                                    <option value="34">Over 34 Years</option>
+                                    <option value="38">Over 38 Years</option>
+                                    <option value="40">Over 40 Years</option>
+                                </select>
+                            </div>
+                            <div class="pt-4 border-t border-slate-100 flex justify-between items-center"><span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Est. Basic Pay</span><span id="basic-pay-display" class="text-xl font-mono font-bold text-slate-800">$0.00</span></div>
                         </div>
                     </div>
 
-                    <!-- SIDEBAR AUDIT -->
-                    <div class="lg:col-span-4 space-y-6 sticky top-8 no-print">
-                        <div class="bg-white rounded-[40px] p-8 border border-slate-200 shadow-sm min-h-[300px] flex flex-col">
-                            <div class="flex items-center gap-2 mb-6 border-b border-slate-50 pb-4">
-                                <i data-lucide="layout-dashboard" class="w-5 h-5 text-blue-600"></i>
-                                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest">Compliance Audit</h3>
-                            </div>
-                            <div id="audit-results" class="flex-1 space-y-3">
-                                <!-- Injected by JS -->
-                            </div>
+                    <div class="bg-gradient-to-br from-blue-900 to-indigo-900 text-white p-8 rounded-[40px] shadow-xl relative overflow-hidden section-card">
+                        <i data-lucide="trending-up" class="absolute -right-4 -bottom-4 w-32 h-32 opacity-10 no-print"></i>
+                        <h3 class="text-xl font-bold mb-6 flex items-center gap-2 tracking-tight uppercase tracking-widest">Retirement Forecast</h3>
+                        <div class="space-y-4 mb-8 text-sm uppercase font-black">
+                            <div class="flex justify-between items-center"><span class="text-blue-200 text-[10px] tracking-widest">Multiplier</span><span class="font-mono font-bold">2.5% High-3</span></div>
+                            <div class="flex justify-between items-center"><span class="text-blue-200 text-[10px] tracking-widest">1405 Date Credit</span><span id="credit-1405" class="font-mono font-bold text-yellow-400">0.0 Months</span></div>
+                            <div class="flex justify-between items-center border-t border-blue-800 pt-3"><span class="text-blue-200 text-[10px] tracking-widest">Point Yrs Eq.</span><span id="point-years-planner" class="font-mono font-bold text-lg">0.00</span></div>
                         </div>
+                        <div class="text-center">
+                            <p class="text-[9px] text-blue-300 uppercase font-black tracking-widest mb-1">Estimated Monthly Pension</p>
+                            <span id="final-pension" class="text-5xl font-black text-white">$0.00</span>
+                        </div>
+                    </div>
 
-                        <div class="bg-slate-900 rounded-[40px] p-8 text-white shadow-2xl relative overflow-hidden ring-4 ring-slate-900/50">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-600/20 blur-3xl rounded-full -mr-16 -mt-16"></div>
-                            <div class="relative z-10">
-                                <div class="flex items-center gap-2 mb-6 border-b border-white/10 pb-4">
-                                    <i data-lucide="book-open" class="w-5 h-5 text-blue-400"></i>
-                                    <h3 class="text-xs font-black text-blue-400 uppercase tracking-widest leading-none">Policy Guidance</h3>
-                                </div>
-                                <div id="policy-content" class="text-[11px] leading-relaxed text-slate-300 space-y-5 font-medium italic">
-                                    <!-- Injected by JS -->
-                                </div>
+                    <button onclick="triggerPrint()" class="w-full bg-white text-blue-900 border border-blue-200 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-blue-50 transition-all no-print shadow-sm uppercase tracking-widest cursor-pointer">
+                        <i data-lucide="printer" class="w-5 h-5"></i> Print Summary
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: TAFMSD AUDITOR -->
+        <div id="view-auditor" class="hidden animate-in fade-in duration-300 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-white/90 backdrop-blur rounded-[40px] shadow-sm border border-slate-200 p-10 space-y-8 no-print">
+                        <div>
+                            <h2 class="text-xl font-black text-indigo-900 uppercase tracking-tight mb-6 flex items-center gap-2 uppercase tracking-widest">
+                                <i data-lucide="history" class="w-6 h-6 text-indigo-500"></i> Parameters
+                            </h2>
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 block uppercase">Reference Date</label>
+                            <input type="date" id="auditor-ref-date" class="w-full p-5 bg-slate-50 border-2 border-slate-100 rounded-3xl font-black text-2xl outline-none focus:border-indigo-600 transition-all shadow-inner uppercase" oninput="calculateAuditor()">
+                        </div>
+                        <div class="pt-8 border-t border-slate-100 text-center uppercase">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 block uppercase">Time to Deduct (360-Base)</label>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div><span class="text-[9px] font-bold text-slate-400 uppercase mb-2 block tracking-widest">Yrs</span><input type="number" id="auditor-y" value="" placeholder="Yrs" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl font-black text-center text-xl outline-none focus:border-indigo-600 shadow-sm uppercase" oninput="calculateAuditor()"></div>
+                                <div><span class="text-[9px] font-bold text-slate-400 uppercase mb-2 block tracking-widest">Mos</span><input type="number" id="auditor-m" value="" placeholder="Mos" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl font-black text-center text-xl outline-none focus:border-indigo-600 shadow-sm uppercase" oninput="calculateAuditor()"></div>
+                                <div><span class="text-[9px] font-bold text-slate-400 uppercase mb-2 block tracking-widest">Days</span><input type="number" id="auditor-d" value="" placeholder="Days" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl font-black text-center text-xl outline-none focus:border-indigo-600 shadow-sm uppercase" oninput="calculateAuditor()"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- PRINT SECTION -->
-                <div class="hidden print:block mt-12 bg-white p-12 border-2 border-slate-900 rounded-[32px] space-y-8 text-center uppercase">
-                    <h2 class="text-2xl font-black italic tracking-tighter underline decoration-blue-600">Promotion Certification</h2>
-                    <div id="print-header-info" class="text-left font-black text-sm space-y-2 mt-4"></div>
-                    <div class="grid grid-cols-2 gap-12 mt-12 text-left">
-                        <div class="space-y-12">
-                            <div class="border-b-2 border-slate-300 pb-2">
-                                <p class="text-[10px] font-bold text-slate-400">Reviewer Name/Rank</p>
-                                <div class="h-8"></div>
-                            </div>
-                            <div class="border-b-2 border-slate-300 pb-2">
-                                <p class="text-[10px] font-bold text-slate-400">Digital Signature</p>
-                                <div class="h-8"></div>
+                <div class="lg:col-span-7 bg-white rounded-[48px] shadow-2xl border-t-[12px] border-indigo-900 p-16 text-center relative overflow-hidden section-card">
+                    <h3 class="text-[11px] font-black text-slate-400 uppercase tracking-[0.5em] mb-12 tracking-widest">Projected TAFMSD</h3>
+                    <div class="py-16 bg-slate-50 rounded-[60px] border-2 border-slate-100 mb-12 shadow-inner group">
+                        <span id="auditor-display-target" class="text-6xl md:text-8xl font-black tracking-tighter text-indigo-900 tabular-nums uppercase">-- --- ----</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8 text-left text-sm uppercase font-black tracking-widest">
+                        <div class="p-6 bg-slate-50 rounded-3xl border border-slate-200 shadow-sm">
+                            <span class="text-[9px] font-black text-slate-400 tracking-widest block mb-1 uppercase">System Days</span>
+                            <span id="auditor-mil-days" class="text-2xl font-mono font-black text-slate-700 uppercase">0</span>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-3xl border border-slate-200 shadow-sm">
+                            <span class="text-[9px] font-black text-slate-400 tracking-widest block mb-1 uppercase">Retirement Pts</span>
+                            <span id="auditor-points" class="text-2xl font-mono font-black text-slate-700 uppercase">0</span>
+                        </div>
+                    </div>
+                    <button onclick="triggerPrint()" class="w-full bg-white text-indigo-900 border border-indigo-100 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-indigo-50 transition-all no-print shadow-sm uppercase tracking-widest cursor-pointer mt-10">
+                        <i data-lucide="printer" class="w-5 h-5"></i> Print Auditor Summary
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: SERVICE DATES ENGINE -->
+        <div id="view-durations" class="hidden animate-in fade-in duration-300 relative z-10">
+            <div class="mb-10 text-center md:text-left">
+                <h2 class="text-xl font-black text-slate-800 mb-1 tracking-tight uppercase tracking-widest leading-none">Service Dates Engine</h2>
+                <p class="text-slate-500 text-sm font-medium uppercase tracking-widest">Duration Computation Engine</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+                <div class="w-full lg:w-[400px] bg-white/90 backdrop-blur rounded-[40px] shadow-sm border border-slate-200 p-8 space-y-6 no-print">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i data-lucide="calendar" class="w-5 h-5 text-emerald-600"></i>
+                        <h3 class="text-lg font-black text-blue-900 uppercase tracking-widest">Parameters</h3>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 block">Calculation Type</label>
+                        <select id="dur-type" class="w-full px-4 py-4 bg-slate-50 border-2 border-slate-100 rounded-3xl font-bold text-lg outline-none focus:border-emerald-600 focus:bg-white appearance-none cursor-pointer shadow-inner uppercase tracking-widest" onchange="calculateDurations()">
+                            <option value="Time In Grade">Time In Grade</option>
+                            <option value="Time In Service">Time In Service</option>
+                            <option value="Custom Duration">Custom Duration</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 block">Start Date</label>
+                        <input type="date" id="dur-start" class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-3xl font-bold text-lg outline-none focus:border-emerald-600 focus:bg-white transition-all shadow-inner uppercase tracking-widest" oninput="calculateDurations()">
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 block">Target Date</label>
+                        <input type="date" id="dur-target" class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-3xl font-bold text-lg outline-none focus:border-emerald-600 focus:bg-white transition-all shadow-inner uppercase tracking-widest" oninput="calculateDurations()">
+                    </div>
+                </div>
+
+                <div class="flex-1 space-y-6 w-full text-center">
+                    <div id="durations-idle" class="bg-white/80 backdrop-blur rounded-[48px] border border-slate-200 border-dashed p-20 flex flex-col items-center justify-center text-slate-300 shadow-inner uppercase no-print">
+                        <h3 class="text-xl font-black text-slate-400 uppercase tracking-widest leading-none">Engine Idle</h3>
+                    </div>
+                    <div id="durations-results" class="hidden animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6">
+                        <div class="bg-white p-10 rounded-[48px] border-t-[12px] border-blue-900 shadow-sm relative overflow-hidden uppercase section-card">
+                            <h3 class="text-xl font-black text-slate-800 uppercase tracking-widest mb-8"><span id="dur-result-label">Duration</span></h3>
+                            <div class="flex flex-wrap items-baseline justify-center gap-4 text-5xl md:text-7xl font-black tracking-tighter text-blue-900 font-mono tabular-nums leading-tight uppercase">
+                                <div><span id="dur-res-y">0</span><span class="text-base font-bold text-slate-300 ml-1">Yrs</span></div>
+                                <div><span id="dur-res-m">0</span><span class="text-base font-bold text-slate-300 ml-1">Mos</span></div>
+                                <div><span id="dur-res-d">0</span><span class="text-base font-bold text-slate-300 ml-1">Days</span></div>
                             </div>
                         </div>
-                        <div class="bg-slate-100 p-8 rounded-3xl flex flex-col items-center justify-center text-center">
-                            <p class="text-xs font-black text-slate-500 mb-2">Review Decision</p>
-                            <p id="print-final-status" class="text-5xl font-black italic"></p>
-                        </div>
+                        <button onclick="triggerPrint()" class="w-full bg-white text-emerald-900 border border-emerald-100 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-emerald-50 transition-all no-print shadow-sm uppercase tracking-widest cursor-pointer">
+                            <i data-lucide="printer" class="w-5 h-5"></i> Print Duration Summary
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- VIEW: 1825 RULE TRACKER -->
+        <div id="view-1825" class="hidden animate-in fade-in duration-300 relative z-10">
+            <header class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <h1 class="text-3xl font-extrabold text-blue-900 flex items-center gap-2 uppercase tracking-widest leading-none">
+                    <i data-lucide="shield" class="w-8 h-8 text-amber-500"></i> 1825 Rule Tracker
+                </h1>
+                <div class="bg-amber-600 text-white px-8 py-4 rounded-[32px] shadow-xl flex items-center gap-6 w-full md:w-auto">
+                    <div class="text-right uppercase">
+                        <p class="text-[10px] opacity-70 uppercase font-black tracking-widest">Non-Exempt Count</p>
+                        <p id="total-1825-display" class="text-2xl font-mono font-bold whitespace-nowrap uppercase">0 Days</p>
+                    </div>
+                    <i data-lucide="layers" class="w-8 h-8 opacity-40"></i>
+                </div>
+            </header>
+            <div id="periods-1825-container" class="space-y-4 mb-8"></div>
+            <div class="flex items-center gap-4 no-print">
+                <button onclick="addPeriod1825()" class="bg-amber-50 text-amber-600 hover:bg-amber-100 px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-1 transition-colors uppercase tracking-widest"><i data-lucide="plus" class="w-4 h-4"></i> Add Tour</button>
+                <div class="flex-grow">
+                     <label class="text-[10px] font-bold text-slate-400 uppercase mb-2 block tracking-widest">Reference Date</label>
+                     <input type="date" id="ref-date-1825" class="p-3 bg-white border rounded-xl outline-none font-bold" oninput="calculate1825()">
+                </div>
+            </div>
+            
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 section-card">
+                <div class="bg-white/90 p-6 rounded-3xl shadow border">
+                     <div class="flex justify-between mb-2 uppercase font-black text-[10px] text-slate-400 tracking-widest">1,825 Day (5 Yr) Cap<span id="prog-1825-text">0%</span></div>
+                     <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden"><div id="prog-1825" class="bg-amber-500 h-full transition-all" style="width: 0%"></div></div>
+                </div>
+                <div class="bg-white/90 p-6 rounded-3xl shadow border">
+                     <div class="flex justify-between mb-2 uppercase font-black text-[10px] text-slate-400 tracking-widest">2,190 Day (6 Yr) Cap<span id="prog-2190-text">0%</span></div>
+                     <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden"><div id="prog-2190" class="bg-red-600 h-full transition-all" style="width: 0%"></div></div>
+                </div>
+            </div>
+            <button onclick="triggerPrint()" class="w-full bg-white text-amber-900 border border-amber-100 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-amber-50 transition-all no-print shadow-sm uppercase tracking-widest cursor-pointer mt-8">
+                <i data-lucide="printer" class="w-5 h-5"></i> Print 1825 Tracking Sheet
+            </button>
+        </div>
+
+        <!-- VIEW: SCOD ENGINE -->
+        <div id="view-scod" class="hidden animate-in fade-in duration-300 relative z-10">
+            <div class="mb-10 text-center md:text-left">
+                <h2 class="text-xl font-black text-slate-800 mb-1 tracking-tight uppercase tracking-widest">SCOD Reference Engine</h2>
+                <p class="text-slate-500 text-sm font-medium uppercase tracking-widest">Air National Guard Evaluation Schedule</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5 bg-white/90 backdrop-blur rounded-[40px] shadow-sm border border-slate-200 p-10 space-y-8 no-print">
+                    <div>
+                        <h2 class="text-xl font-black text-blue-900 uppercase tracking-tight mb-6 flex items-center gap-2 tracking-widest">
+                            <i data-lucide="settings" class="w-6 h-6 text-blue-600"></i> Parameters
+                        </h2>
+                        
+                        <div class="mb-6">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 block tracking-widest">Member Rank</label>
+                            <select id="scod-rank" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-3xl font-bold text-lg outline-none focus:border-blue-600 appearance-none cursor-pointer shadow-inner uppercase tracking-widest" onchange="toggleManualSCOD()">
+                                <optgroup label="Officers (Total Force)">
+                                    <option value="O1-O2">2d Lt / 1st Lt (31 Oct)</option>
+                                    <option value="O3">Captain (31 Aug)</option>
+                                    <option value="O4-O5">Major / Lt Col (31 May)</option>
+                                    <option value="O6">Colonel (28 Feb)</option>
+                                </optgroup>
+                                <optgroup label="Enlisted (ANG)">
+                                    <option value="E1-E4">SrA and below (31 Mar)</option>
+                                    <option value="E5">Staff Sergeant (31 Jan)</option>
+                                    <option value="E6">Technical Sergeant (30 Nov)</option>
+                                    <option value="E7">Master Sergeant (30 Sep)</option>
+                                    <option value="E8">Senior Master Sgt (31 Jul)</option>
+                                    <option value="E9">Chief Master Sgt (31 May)</option>
+                                </optgroup>
+                                <optgroup label="Transitional Control">
+                                    <option value="MANUAL">Manual / Custom Date Override</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div id="scod-status-group" class="mb-6">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 block tracking-widest">Duty Status</label>
+                            <select id="scod-status" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-3xl font-bold text-lg outline-none focus:border-blue-600 appearance-none cursor-pointer shadow-inner uppercase tracking-widest" onchange="calculateSCOD()">
+                                <option value="AGR">AGR / Statutory Tour (Annual)</option>
+                                <option value="DSG">DSG / Part-Time (Biennial)</option>
+                            </select>
+                        </div>
+
+                        <div id="scod-year-group" class="mb-6">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 block tracking-widest">Evaluation Year</label>
+                            <input type="number" id="scod-year" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-3xl font-bold text-lg outline-none focus:border-blue-600 focus:bg-white shadow-inner uppercase tracking-widest" oninput="calculateSCOD()">
+                        </div>
+
+                        <div id="scod-manual-group" class="mb-6 hidden">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 block tracking-widest">Custom Transitional Closeout</label>
+                            <input type="date" id="scod-manual-date" class="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-3xl font-bold text-lg outline-none focus:border-blue-600 focus:bg-white shadow-inner uppercase tracking-widest" oninput="calculateSCOD()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-white rounded-[48px] shadow-2xl border-t-[12px] border-blue-900 p-12 text-center relative overflow-hidden section-card">
+                    <div class="space-y-8">
+                        <div class="bg-slate-50 rounded-[40px] p-8 border-2 border-slate-100 shadow-inner">
+                            <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-4">Static Closeout (SCOD)</h3>
+                            <span id="scod-display-target" class="text-5xl md:text-7xl font-black tracking-tighter text-blue-900 tabular-nums uppercase leading-none">-- --- ----</span>
+                        </div>
+                        <div class="bg-amber-50 rounded-[40px] p-8 border-2 border-amber-100 shadow-sm relative">
+                            <h3 class="text-[10px] font-black text-amber-600 uppercase tracking-[0.4em] mb-4">Accounting Date</h3>
+                            <span id="scod-accounting-display" class="text-4xl md:text-5xl font-black tracking-tighter text-amber-900 tabular-nums uppercase leading-none">-- --- ----</span>
+                            <p class="text-[8px] text-amber-600 mt-4 font-black uppercase tracking-widest">MilPDS Unit Status as of this date determines responsibility.</p>
+                            <div id="biennial-badge" class="absolute -top-3 right-8 bg-blue-600 text-white text-[8px] font-black px-4 py-1 rounded-full uppercase hidden">Biennial Year</div>
+                        </div>
+                        <div id="scod-parity-warning" class="bg-rose-50 text-rose-700 p-4 rounded-2xl text-[10px] font-bold uppercase hidden">
+                            Cycle Check: SCODs for this rank occur on <span id="scod-parity-note"></span> years.
+                        </div>
+                    </div>
+                    <button onclick="triggerPrint()" class="w-full bg-white text-blue-900 border border-blue-100 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-blue-50 transition-all no-print shadow-sm uppercase tracking-widest cursor-pointer mt-10">
+                        <i data-lucide="printer" class="w-5 h-5"></i> Print Closeout Summary
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-20 text-center text-slate-400 text-[10px] pb-12 no-print border-t-2 border-slate-200 pt-12 uppercase tracking-[0.5em] font-black relative z-10">
+            <p>© 2026 CA ANG/A1 • Force Support Directorate</p>
+            <p class="mt-2 ca-gold-text opacity-70 italic tracking-[0.1em] tracking-widest uppercase">California Air National Guard</p>
+        </footer>
     </div>
 
     <script>
-        // Existing hub JS (showView, periods, calculate, etc.)
+        // --- SHARED DATA ---
+        const PAY_CHART = {
+            "E-4": { "18": 3815, "20": 3815, "22": 3815, "24": 3815, "26": 3815, "30": 3815, "34": 3815, "38": 3815, "40": 3815 },
+            "E-5": { "18": 4510, "20": 4510, "22": 4510, "24": 4510, "26": 4510, "30": 4510, "34": 4510, "38": 4510, "40": 4510 },
+            "E-6": { "18": 5268, "20": 5268, "22": 5268, "24": 5268, "26": 5268, "30": 5268, "34": 5268, "38": 5268, "40": 5268 },
+            "E-7": { "18": 6177, "20": 6246, "22": 6475, "24": 6625, "26": 7083, "30": 7083, "34": 7083, "38": 7083, "40": 7083 },
+            "E-8": { "18": 6811, "20": 6995, "22": 7308, "24": 7514, "26": 7949, "30": 8107, "34": 8107, "38": 8107, "40": 8107 },
+            "E-9": { "18": 7731, "20": 8105, "22": 8423, "24": 8769, "26": 9276, "30": 9741, "34": 10228, "38": 10740, "40": 11277 },
+            "O-1": { "18": 5222, "20": 5222, "22": 5222, "24": 5222, "26": 5222, "30": 5222, "34": 5222, "38": 5222, "40": 5222 },
+            "O-2": { "18": 6272, "20": 6272, "22": 6272, "24": 6272, "26": 6272, "30": 6272, "34": 6272, "38": 6272, "40": 6272 },
+            "O-3": { "18": 9004, "20": 9004, "22": 9004, "24": 9004, "26": 9004, "30": 9004, "34": 9004, "38": 9004, "40": 9004 },
+            "O-4": { "18": 10509, "20": 10509, "22": 10509, "24": 10509, "26": 10509, "30": 10509, "34": 10509, "38": 10509, "40": 10509 },
+            "O-5": { "18": 11714, "20": 12033, "22": 12395, "24": 12450, "26": 12450, "30": 12450, "34": 12450, "38": 12450, "40": 12450 },
+            "O-6": { "18": 13116, "20": 13751, "22": 14113, "24": 14480, "26": 15190, "30": 15494, "34": 15804, "38": 16120, "40": 16442 }
+        };
+
+        const EXEMPT_TYPES = ['AGR', 'ADT', 'AT', 'School'];
+        let periods = [];
+        let periods1825 = [];
+
         function showView(viewName) {
-            ['home', 'planner', 'auditor', 'durations', '1825', 'scod', 'snco'].forEach(v => {
+            ['home', 'planner', 'auditor', 'durations', '1825', 'scod'].forEach(v => {
                 const el = document.getElementById(`view-${v}`);
                 if (el) el.classList.add('hidden');
             });
-            const target = document.getElementById(`view-${viewName}`);
-            if (target) target.classList.remove('hidden');
+            document.getElementById(`view-${viewName}`).classList.remove('hidden');
             document.getElementById('home-nav').classList.toggle('hidden', viewName === 'home');
-
+            
+            // Check if Lucide exists before calling
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
-
+            
             if (viewName === 'planner') calculate();
             if (viewName === 'auditor') calculateAuditor();
             if (viewName === 'durations') calculateDurations();
             if (viewName === '1825') calculate1825();
             if (viewName === 'scod') calculateSCOD();
-            if (viewName === 'snco') sncoRender();
-
             window.scrollTo(0, 0);
         }
 
+        // Robust print trigger
         function triggerPrint() {
+            // Short delay helps ensure any pending browser UI updates are processed
             setTimeout(function() {
                 window.print();
             }, 150);
         }
 
-        // ... keep all your existing helper functions and engines here:
-        // isLeap, getActualCalendarDays, updateRowDayDisplays, calculateMilitaryDays, calculate,
-        // calculateAuditor, calculateDurations, calculate1825, calculateSCOD, etc. (unchanged)
-
-    </script>
-
-    <script>
-        // SNCO TERMINAL LOGIC (from validated standalone file)
-
-        const standards = {
-            TSgt: { minTis: 72, minTig: 24, skill: 7, tisLabel: '6 Yrs', tigLabel: '2 Yrs', minPassScore: 0, composition: "2 TSgts and 1 MSgt" },
-            MSgt: { minTis: 96, minTig: 24, skill: 7, pme: ['NCOA', 'SNCOA'], tisLabel: '8 Yrs', tigLabel: '2 Yrs', minPassScore: 32, composition: "Min 2 MSgts and 1 SMSgt", stepComposition: "Wing CCM + 2 SNCOs" },
-            SMSgt: { minTis: 132, minTig: 24, skill: 7, pme: ['SNCOA'], tisLabel: '11 Yrs', tigLabel: '2 Yrs', minPassScore: 35, composition: "Min 2 SMSgts and 1 CMSgt", stepComposition: "State CCM + Wing CCMs (Paper)" },
-            CMSgt: { minTis: 168, minTig: 24, skill: 9, pme: ['SNCOA'], tisLabel: '14 Yrs', tigLabel: '2 Yrs', minPassScore: 37, composition: "3 CMSgts (inc. Wing CCM)", stepComposition: "State CCM + Wing CCMs (Paper)" },
-        };
-
-        let sncoState = {
-            currentStep: 1,
-            isFirstSgt: false,
-            profile: { name: '', unit: '', component: 'AGR', targetRank: 'MSgt', packageType: 'Standard' },
-            service: { dor: '', payDate: '', tafmsYears: '', tafmsMonths: '', satYears: '', satMonths: '', epbDate: '', pafscLevel: '7', dafscLevel: '7', pme: 'None', hasDegree: false },
-            stepFlags: { isSoleOccupant: false, priorStepToGrade: false, priorInvolDemotion: false, fmpRemarks: '' },
-            readiness: { fitScore: '', fitDate: '', clearanceDate: '', adminHolds: { demotion: false, retirement: false, suspended: false } },
-            board: { compositionMet: false, boardDate: '' },
-            checklist: { ca26: false, sou: false, memo: false, epb: false, fit: false, retrain_sou: false, step2_sou: false, bio: false, sec_memo: false, first_sgt_sou: false }
-        };
-
-        function formatYM(totalMonths) {
-            if (!totalMonths && totalMonths !== 0) return "N/A";
-            const yrs = Math.floor(totalMonths / 12);
-            const mos = totalMonths % 12;
-            return `${yrs} Yr${yrs !== 1 ? 's' : ''} ${mos} Mo${mos !== 1 ? 's' : ''}`;
+        function isLeap(year) { return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0); }
+        function getActualCalendarDays(startStr, endStr) {
+            if (!startStr || !endStr) return 0;
+            const s = new Date(startStr + 'T00:00:00'), e = new Date(endStr + 'T00:00:00');
+            return Math.ceil((e - s) / 86400000) + 1;
         }
 
-        function calcMonths(date) {
-            if (!date) return null;
-            const d = new Date(date + 'T00:00:00');
-            const now = new Date();
-            return (now.getFullYear() - d.getFullYear()) * 12 + (now.getMonth() - d.getMonth());
-        }
-
-        function sncoUpdateField(category, field, value) {
-            if (category) sncoState[category][field] = value;
-            sncoRender();
-        }
-
-        function sncoChangeStep(dir) {
-            sncoState.currentStep = Math.max(1, Math.min(4, sncoState.currentStep + dir));
-            sncoRender();
-        }
-
-        function sncoToggleStepFlag(flag) {
-            sncoState.stepFlags[flag] = !sncoState.stepFlags[flag];
-            sncoRender();
-        }
-
-        function sncoToggleAdminHold(id) {
-            sncoState.readiness.adminHolds[id] = !sncoState.readiness.adminHolds[id];
-            sncoRender();
-        }
-
-        function sncoToggleFirstSgt() {
-            sncoState.isFirstSgt = !sncoState.isFirstSgt;
-            sncoRender();
-        }
-
-        function sncoToggleComposition() {
-            sncoState.board.compositionMet = !sncoState.board.compositionMet;
-            sncoRender();
-        }
-
-        function sncoToggleCheck(id) {
-            sncoState.checklist[id] = !sncoState.checklist[id];
-            sncoRender();
-        }
-
-        function sncoGetMetrics() {
-            const tis = calcMonths(sncoState.service.payDate);
-            const tig = calcMonths(sncoState.service.dor);
-            const clearanceAge = calcMonths(sncoState.readiness.clearanceDate);
-
-            let fitExpiration = null;
-            if (sncoState.readiness.fitDate && sncoState.readiness.fitScore) {
-                const testDate = new Date(sncoState.readiness.fitDate + 'T00:00:00');
-                const validityMonths = parseFloat(sncoState.readiness.fitScore) >= 90 ? 12 : 6;
-                fitExpiration = new Date(testDate.getFullYear(), testDate.getMonth() + validityMonths + 1, 0);
-            }
-
-            const tafms = (parseInt(sncoState.service.tafmsYears) || 0) * 12 + (parseInt(sncoState.service.tafmsMonths) || 0);
-            const sat = (parseInt(sncoState.service.satYears) || 0) * 12 + (parseInt(sncoState.service.satMonths) || 0);
-            const epbAge = calcMonths(sncoState.service.epbDate);
-
-            return { tis, tig, clearanceAge, fitExpiration, tafms, sat, epbAge };
-        }
-
-        function sncoRender() {
-            const metrics = sncoGetMetrics();
-            const s = standards[sncoState.profile.targetRank];
-            const isRetraining = parseInt(sncoState.service.pafscLevel) >= s.skill && parseInt(sncoState.service.dafscLevel) < s.skill;
-
-            // Component toggle
-            const compEl = document.getElementById('component-toggle');
-            if (compEl) {
-                const comps = ['DSG', 'AGR', 'Technician', 'Statutory Tour'];
-                compEl.innerHTML = comps.map(c => `
-                    <button onclick="sncoState.profile.component='${c}'; sncoRender();" 
-                            class="flex-1 py-3 text-[10px] font-black rounded-lg transition-all ${sncoState.profile.component === c ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500 hover:bg-white/50'}">
-                        ${c}
-                    </button>
-                `).join('');
-            }
-
-            // Steps visibility
-            document.querySelectorAll('.snco-step').forEach((el, i) => {
-                el.classList.toggle('hidden', i + 1 !== sncoState.currentStep);
+        function updateRowDayDisplays(containerId, mode) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const rows = container.querySelectorAll('.row-day-count');
+            const dataSet = containerId === 'periods-container' ? periods : periods1825;
+            rows.forEach((badge, idx) => {
+                const p = dataSet[idx];
+                if (!p) return;
+                let dayCount = mode === 'mil' ? (p.manualDays !== '' && p.manualDays !== undefined ? parseInt(p.manualDays) : calculateMilitaryDays(p.start, p.end)) : getActualCalendarDays(p.start, p.end);
+                badge.innerText = isNaN(dayCount) ? "0" : dayCount.toLocaleString();
             });
+        }
 
-            // Stepper
-            const stepper = document.getElementById('stepper-container');
-            const labels = ["Identity", "Service", "Readiness", "Verification"];
-            stepper.innerHTML = labels.map((l, i) => `
-                <div class="flex flex-col items-center gap-2 flex-1 relative ${sncoState.currentStep >= i+1 ? 'text-blue-600' : 'text-slate-400'}">
-                    <div class="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold transition-all ${sncoState.currentStep >= i+1 ? 'bg-blue-600 text-white border-blue-600 scale-110 shadow-lg shadow-blue-200' : 'bg-white border-slate-200'}">
-                        ${sncoState.currentStep > i+1 ? '<i data-lucide="check-circle-2" class="w-6 h-6"></i>' : i+1}
-                    </div>
-                    <span class="text-[10px] font-black uppercase tracking-widest text-center leading-tight">${l}</span>
-                    ${i < 3 ? '<div class="hidden md:block absolute top-5 left-[calc(50%+25px)] w-[calc(100%-50px)] h-0.5 bg-slate-100"></div>' : ''}
-                </div>
-            `).join('');
+        // --- PLANNER ENGINE ---
+        function calculateMilitaryDays(startStr, endStr) {
+            if (!startStr || !endStr) return 0;
+            const s = new Date(startStr + 'T00:00:00'), e = new Date(endStr + 'T00:00:00');
+            let y1 = s.getFullYear(), m1 = s.getMonth() + 1, d1 = s.getDate();
+            let y2 = e.getFullYear(), m2 = e.getMonth() + 1, d2 = e.getDate();
+            if (m1 === 2 && d1 >= 28) { if (!isLeap(y1) || (isLeap(y1) && d1 === 29)) d1 = 30; else if (isLeap(y1) && d1 === 28) d1 = 30; }
+            if (m2 === 2 && d2 >= 28) { if (!isLeap(y2) || (isLeap(y2) && d2 === 29)) d2 = 30; else if (isLeap(y2) && d2 === 28) d2 = 30; }
+            if (d1 === 31) d1 = 30; if (d2 === 31) d2 = 30;
+            return ((y2 - y1) * 360) + ((m2 - m1) * 30) + (d2 - d1) + 1;
+        }
 
-            // Labels
-            const tisLabel = document.getElementById('tis-label');
-            const tigLabel = document.getElementById('tig-label');
-            if (tisLabel) tisLabel.innerText = `Pay Entry Date (TIS: ${metrics.tis !== null ? formatYM(metrics.tis) : 'N/A'})`;
-            if (tigLabel) tigLabel.innerText = `Date of Rank (TIG: ${metrics.tig !== null ? formatYM(metrics.tig) : 'N/A'})`;
+        function calculate() {
+            let totalAdDays = 0;
+            const cutoffStr = document.getElementById('cutoff-date').value;
+            const cutoffDate = cutoffStr ? new Date(cutoffStr + 'T00:00:00') : null;
+            periods.forEach(p => {
+                const periodStart = p.start ? new Date(p.start + 'T00:00:00') : null;
+                const periodEnd = p.end ? new Date(p.end + 'T00:00:00') : null;
+                let effectiveEndStr = p.end;
+                let isExcluded = cutoffDate && periodStart && periodStart > cutoffDate;
+                let isProRated = !isExcluded && cutoffDate && periodEnd && periodEnd > cutoffDate;
+                if (isProRated) effectiveEndStr = cutoffStr;
+                const rowEl = document.getElementById(`period-${p.id}`), badgeEl = document.getElementById(`row-badge-${p.id}`);
+                if (rowEl) { isExcluded ? rowEl.classList.add('excluded-period') : rowEl.classList.remove('excluded-period'); if (badgeEl) isProRated ? badgeEl.classList.remove('hidden') : badgeEl.classList.add('hidden'); }
+                if (!isExcluded) {
+                    const fullActual = getActualCalendarDays(p.start, p.end), effectiveActual = getActualCalendarDays(p.start, effectiveEndStr);
+                    let daysToUse = p.manualDays !== '' && p.manualDays !== null ? (isProRated && fullActual > 0 ? Math.round(parseInt(p.manualDays) * (effectiveActual / fullActual)) : parseInt(p.manualDays)) : calculateMilitaryDays(p.start, effectiveEndStr);
+                    totalAdDays += (isNaN(daysToUse) ? 0 : daysToUse);
+                }
+            });
+            document.getElementById('total-tafms-display').innerText = `${(totalAdDays/360).toFixed(2)} Yrs (${totalAdDays} Days)`;
+            document.getElementById('point-years-planner').innerText = (totalAdDays / 360).toFixed(2);
+            document.getElementById('credit-1405').innerText = `${(totalAdDays / 30).toFixed(1)} Months`;
+            updateRowDayDisplays('periods-container', 'mil');
+            
+            const rank = document.getElementById('rank-select').value;
+            const long = document.getElementById('longevity-select').value;
+            const basePay = PAY_CHART[rank]?.[long] || 0;
+            document.getElementById('basic-pay-display').innerText = `$${basePay.toLocaleString()}`;
+            
+            const careerYrs = parseFloat(document.getElementById('career-years').value) || 20;
+            const drillPts = parseInt(document.getElementById('drill-points').value) || 48;
+            const otherPts = parseInt(document.getElementById('other-points').value) || 0;
+            const resYrs = careerYrs - (totalAdDays / 360);
+            document.getElementById('reserve-years-display').innerText = `${Math.max(0, resYrs).toFixed(2)} Yrs`;
+            const finalPts = totalAdDays + (Math.max(0, resYrs) * (drillPts + 15)) + otherPts;
+            document.getElementById('total-points-display').innerText = Math.round(finalPts).toLocaleString();
+            const pension = (basePay * (Math.round(finalPts) / 360) * 0.025);
+            document.getElementById('final-pension').innerText = `$${pension.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        }
 
-            // STEP I extra
-            const step1extra = document.getElementById('step1-extra');
-            if (step1extra) step1extra.classList.toggle('hidden', sncoState.profile.packageType !== 'STEP_I');
-            const flagSole = document.getElementById('flag-sole');
-            const flagPrior = document.getElementById('flag-prior');
-            if (flagSole) flagSole.checked = sncoState.stepFlags.isSoleOccupant;
-            if (flagPrior) flagPrior.checked = sncoState.stepFlags.priorStepToGrade;
+        // --- AUDITOR ENGINE ---
+        function calculateAuditor() {
+            const refStr = document.getElementById('auditor-ref-date').value;
+            if (!refStr) return;
+            const y = parseInt(document.getElementById('auditor-y').value) || 0, m = parseInt(document.getElementById('auditor-m').value) || 0, d = parseInt(document.getElementById('auditor-d').value) || 0;
+            const ref = new Date(refStr + 'T00:00:00');
+            let ry = ref.getFullYear() - y, rm = (ref.getMonth() + 1) - m, rd = ref.getDate();
+            if (rm === 2 && rd >= 28) { if (!isLeap(ry) || (isLeap(ry) && rd === 29)) rd = 30; else if (isLeap(ry) && rd === 28) rd = 30; }
+            rd = (rd - d) + 1; while (rd < 1) { rd += 30; rm -= 1; } while (rm < 1) { rm += 12; ry -= 1; }
+            if (rm === 2 && rd >= 30) { rm = 3; rd = 1; }
+            const mos = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+            document.getElementById('auditor-display-target').innerText = `${String(rd).padStart(2, '0')} ${mos[rm - 1]} ${ry}`;
+            const milDays = (y * 360) + (m * 30) + d;
+            document.getElementById('auditor-mil-days').innerText = milDays.toLocaleString();
+            document.getElementById('auditor-points').innerText = Math.round((y * 365.25) + (m * 30.44) + d).toLocaleString();
+        }
 
-            // TAFMS / SAT card
-            const tafmsContainer = document.getElementById('tafms-container');
-            const isAGR = sncoState.profile.component === 'AGR';
-            if (tafmsContainer) {
-                tafmsContainer.className = `p-6 rounded-[32px] space-y-4 shadow-xl transition-all ${isAGR ? 'bg-slate-900 ring-4 ring-blue-500/20 text-white' : 'bg-slate-100 border border-slate-200 text-slate-900'}`;
-                tafmsContainer.innerHTML = `
-                    <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                        <span class="text-[9px] font-black uppercase">${isAGR ? 'AGR Active Service (TAFMS)' : 'Satisfactory Service (NGB 23)'}</span>
-                        <span class="font-black text-xs ${isAGR ? 'text-blue-400' : 'text-blue-900'}">${isAGR ? formatYM(metrics.tafms) : formatYM(metrics.sat)}</span>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-[9px] font-bold uppercase opacity-50">Years</label>
-                            <input type="number" value="${isAGR ? sncoState.service.tafmsYears : sncoState.service.satYears}" 
-                                   oninput="sncoUpdateField('service', '${isAGR ? 'tafmsYears' : 'satYears'}', this.value)" 
-                                   class="w-full rounded-xl p-3 text-xl font-black outline-none ${isAGR ? 'bg-slate-800 text-white border-slate-700' : 'bg-white border-slate-200'}">
-                        </div>
-                        <div>
-                            <label class="text-[9px] font-bold uppercase opacity-50">Months</label>
-                            <input type="number" value="${isAGR ? sncoState.service.tafmsMonths : sncoState.service.satMonths}" 
-                                   oninput="sncoUpdateField('service', '${isAGR ? 'tafmsMonths' : 'satMonths'}', this.value)" 
-                                   class="w-full rounded-xl p-3 text-xl font-black outline-none ${isAGR ? 'bg-slate-800 text-white border-slate-700' : 'bg-white border-slate-200'}" max="11">
-                        </div>
-                    </div>
-                `;
+        // --- SERVICE DATES ENGINE ---
+        function calculateDurations() {
+            const startStr = document.getElementById('dur-start').value;
+            if (!startStr) { document.getElementById('durations-idle').classList.remove('hidden'); document.getElementById('durations-results').classList.add('hidden'); return; }
+            document.getElementById('durations-idle').classList.add('hidden'); document.getElementById('durations-results').classList.remove('hidden');
+            document.getElementById('dur-result-label').innerText = document.getElementById('dur-type').value;
+            const tDate = document.getElementById('dur-target').value ? new Date(document.getElementById('dur-target').value + 'T00:00:00') : new Date();
+            let diffMs = tDate.getTime() - new Date(startStr + 'T00:00:00').getTime();
+            const totalDays = Math.max(0, Math.floor(diffMs / 86400000));
+            const y = Math.floor(totalDays / 365.25), m = Math.floor((totalDays % 365.25) / 30.44), d = Math.floor((totalDays % 365.25) % 30.44);
+            document.getElementById('dur-res-y').innerText = y; document.getElementById('dur-res-m').innerText = m; document.getElementById('dur-res-d').innerText = d;
+        }
+
+        // --- 1825 RULE ENGINE ---
+        function calculate1825() {
+            const refStr = document.getElementById('ref-date-1825').value;
+            if (!refStr) return;
+            const refDate = new Date(refStr + 'T00:00:00'), winStart = new Date(refDate.getTime() - (1825 * 86400000));
+            let counted = 0;
+            periods1825.forEach(p => {
+                if (!p.start || !p.end || EXEMPT_TYPES.includes(p.type)) return;
+                const ps = new Date(p.start + 'T00:00:00'), pe = new Date(p.end + 'T00:00:00');
+                const es = ps < winStart ? winStart : ps, ee = pe > refDate ? refDate : pe;
+                if (es <= ee) counted += Math.ceil((ee - es) / 86400000) + 1;
+            });
+            document.getElementById('total-1825-display').innerText = `${counted.toLocaleString()} Days`;
+            const p1 = Math.min(100, Math.round((counted / 1825) * 100)), p2 = Math.min(100, Math.round((counted / 2190) * 100));
+            document.getElementById('prog-1825').style.width = `${p1}%`; document.getElementById('prog-2190').style.width = `${p2}%`;
+            document.getElementById('prog-1825-text').innerText = `${p1}%`; document.getElementById('prog-2190-text').innerText = `${p2}%`;
+            updateRowDayDisplays('periods-1825-container', 'calendar');
+        }
+
+        // --- SCOD ENGINE ---
+        function toggleManualSCOD() {
+            const isManual = document.getElementById('scod-rank').value === 'MANUAL';
+            document.getElementById('scod-status-group').classList.toggle('hidden', isManual || document.getElementById('scod-rank').value.startsWith('O'));
+            document.getElementById('scod-year-group').classList.toggle('hidden', isManual);
+            document.getElementById('scod-manual-group').classList.toggle('hidden', !isManual);
+            calculateSCOD();
+        }
+        function calculateSCOD() {
+            const rank = document.getElementById('scod-rank').value, status = document.getElementById('scod-status').value;
+            let scod, acct;
+            if (rank === 'MANUAL') {
+                const val = document.getElementById('scod-manual-date').value;
+                if (!val) { ['scod-display-target', 'scod-accounting-display'].forEach(id => document.getElementById(id).innerText = "-- --- ----"); return; }
+                scod = new Date(val + 'T23:59:59'); acct = new Date(scod.getTime() - (120 * 86400000));
+            } else {
+                const yr = parseInt(document.getElementById('scod-year').value) || new Date().getFullYear();
+                const config = { 
+                    'O1-O2': {m:9, d:31}, 'O3': {m:7, d:31}, 'O4-O5': {m:4, d:31}, 'O6': {m:1, d:28},
+                    'E1-E4': {m:2, d:31, p:'even'}, 'E5': {m:0, d:31, p:'odd'}, 'E6': {m:10, d:30, p:'even'},
+                    'E7': {m:8, d:30, p:'odd'}, 'E8': {m:6, d:31, p:'even'}, 'E9': {m:4, d:31, p:'odd'} 
+                }[rank];
+                if (!config) return;
+                scod = new Date(yr, config.m, config.d, 23, 59, 59); acct = new Date(scod.getTime() - (120 * 86400000));
+                if (rank.startsWith('E') && status === 'DSG') {
+                    const match = (config.p === 'even' && yr % 2 === 0) || (config.p === 'odd' && yr % 2 !== 0);
+                    document.getElementById('biennial-badge').classList.remove('hidden');
+                    document.getElementById('scod-parity-warning').classList.toggle('hidden', match);
+                    document.getElementById('scod-parity-note').innerText = config.p;
+                } else {
+                    document.getElementById('biennial-badge').classList.add('hidden');
+                    document.getElementById('scod-parity-warning').classList.add('hidden');
+                }
             }
+            const mos = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+            document.getElementById('scod-display-target').innerText = `${String(scod.getDate()).padStart(2, '0')} ${mos[scod.getMonth()]} ${scod.getFullYear()}`;
+            document.getElementById('scod-accounting-display').innerText = `${String(acct.getDate()).padStart(2, '0')} ${mos[acct.getMonth()]} ${acct.getFullYear()}`;
+        }
 
-            // Admin flags
-            const adminFlags = document.getElementById('admin-flags');
-            if (adminFlags) {
-                adminFlags.innerHTML = ['demotion', 'retirement', 'suspended'].map(id => `
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold text-slate-700 capitalize">${id.replace('suspended', 'Legal/Hold')}?</span>
-                        <button onclick="sncoToggleAdminHold('${id}')" class="w-12 h-6 rounded-full relative transition-all ${sncoState.readiness.adminHolds[id] ? 'bg-red-600' : 'bg-slate-300'}">
-                            <div class="absolute top-1 w-4 h-4 bg-w
+        // --- SHARED UI ---
+        function addPeriod(data = null) {
+            const p = data || { id: Date.now(), desc: '', start: '', end: '', manualDays: '' };
+            if (!data) periods.push(p);
+            const div = document.createElement('div'); div.id = `period-${p.id}`;
+            div.className = "grid grid-cols-1 md:grid-cols-12 gap-3 p-4 bg-white/50 rounded-2xl border border-slate-100 items-end relative period-row mb-4 shadow-sm";
+            div.innerHTML = `<div class="md:col-span-3"><input type="text" value="${p.desc}" oninput="updatePeriod(${p.id}, 'desc', this.value)" placeholder="Description" class="w-full px-3 py-2 text-xs rounded-lg border font-bold outline-none"></div><div class="md:col-span-3"><input type="date" value="${p.start}" oninput="updatePeriod(${p.id}, 'start', this.value)" class="w-full px-2 py-2 text-xs rounded-lg border border-slate-200 font-bold outline-none"></div><div class="md:col-span-3"><input type="date" value="${p.end}" oninput="updatePeriod(${p.id}, 'end', this.value)" class="w-full px-1 py-2 text-xs rounded-lg border border-slate-200 font-bold outline-none"></div><div class="md:col-span-3 flex items-center justify-end gap-3 no-print"><div class="text-center mr-1 flex-grow"><input type="number" value="${p.manualDays}" oninput="updatePeriod(${p.id}, 'manualDays', this.value)" placeholder="Override" class="w-full bg-white border border-slate-200 text-center text-xs font-bold text-blue-600 rounded-md py-1"></div><div class="flex flex-col items-center gap-1"><button onclick="removePeriod(${p.id})" class="p-1 text-slate-300 hover:text-red-500 transition-colors"><i data-lucide="trash-2" class="w-4 h-4"></i></button><div class="row-day-count ca-gold-bg text-white text-[10px] font-black px-2 py-1 flex items-center justify-center rounded-lg shadow-sm min-w-[32px]">0</div></div></div><div id="row-badge-${p.id}" class="absolute -top-2 -left-2 hidden uppercase"><span class="pro-rated-badge bg-blue-600 text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-sm uppercase">Cutoff Applied</span></div>`;
+            document.getElementById('periods-container').appendChild(div); 
+            if (typeof lucide !== 'undefined') lucide.createIcons(); 
+            calculate();
+        }
+        function removePeriod(id) { if (periods.length > 1) { periods = periods.filter(p => p.id !== id); document.getElementById(`period-${id}`).remove(); calculate(); } }
+        function updatePeriod(id, field, value) { const p = periods.find(p => p.id === id); if (p) p[field] = value; calculate(); }
+
+        function addPeriod1825(data = null) {
+            const period = data || { id: Date.now(), desc: '', start: '', end: '', type: 'ADOS-RC' };
+            if (!data) periods1825.push(period);
+            const div = document.createElement('div'); div.id = `period1825-${period.id}`;
+            div.className = "grid grid-cols-1 md:grid-cols-12 gap-3 p-4 bg-white/90 backdrop-blur rounded-3xl border border-slate-100 items-end shadow-sm mb-4";
+            div.innerHTML = `<div class="md:col-span-2"><select onchange="updatePeriod1825(${period.id}, 'type', this.value)" class="w-full px-2 py-2 text-[11px] rounded-lg border border-slate-200 font-bold bg-slate-50 uppercase"><option value="ADOS-RC">ADOS-RC</option><option value="ADOS-AC">ADOS-AC</option><option value="MPA">MPA</option><option value="AGR">AGR (E)</option><option value="ADT">ADT (E)</option><option value="AT">AT (E)</option><option value="School">School (E)</option></select></div><div class="md:col-span-2"><input type="text" value="${period.desc}" placeholder="Description" oninput="updatePeriod1825(${period.id}, 'desc', this.value)" class="w-full px-2 py-2 text-[11px] rounded-lg border border-slate-200 font-bold outline-none"></div><div class="md:col-span-3"><input type="date" value="${period.start}" oninput="updatePeriod1825(${period.id}, 'start', this.value)" class="w-full px-1 py-2 text-[11px] rounded-lg border border-slate-200 font-bold outline-none"></div><div class="md:col-span-3"><input type="date" value="${period.end}" oninput="updatePeriod1825(${period.id}, 'end', this.value)" class="w-full px-1 py-2 text-[11px] rounded-lg border border-slate-200 font-bold outline-none"></div><div class="md:col-span-2 flex flex-col items-end gap-2 no-print"><button onclick="removePeriod1825(${period.id})" class="p-2 text-slate-300 hover:text-red-500 transition-colors"><i data-lucide="trash-2" class="w-4 h-4"></i></button><div class="row-day-count ca-gold-bg text-white text-[10px] font-black px-2 py-1 flex items-center justify-center rounded-lg shadow-sm min-w-[32px]">0</div></div>`;
+            document.getElementById('periods-1825-container').appendChild(div); 
+            if (typeof lucide !== 'undefined') lucide.createIcons(); 
+            calculate1825();
+        }
+        function removePeriod1825(id) { if (periods1825.length > 1) { periods1825 = periods1825.filter(p => p.id !== id); document.getElementById(`period1825-${id}`).remove(); calculate1825(); } }
+        function updatePeriod1825(id, field, value) { const p = periods1825.find(p => p.id === id); if (p) p[field] = value; calculate1825(); }
+
+        function parseText() {
+            const text = document.getElementById('pcars-input').value; 
+            if (!text) return;
+            const dateRegex = /(\d{1,2}[-\s][A-Z]{3}[-\s]\d{4})|(\d{4}[\/-]\d{2}[\/-]\d{2})/gi;
+            const monthMap = { JAN:'01', FEB:'02', MAR:'03', APR:'04', MAY:'05', JUN:'06', JUL:'07', AUG:'08', SEP:'09', OCT:'10', NOV:'11', DEC:'12' };
+            const normalize = (d) => { 
+                const p = d.trim().replace(/[-\/]/g, ' ').split(/\s+/); 
+                return p.length === 3 ? (p[1].length === 3 ? `${p[2]}-${monthMap[p[1].toUpperCase()]}-${p[0].padStart(2, '0')}` : `${p[0]}-${p[1].padStart(2, '0')}-${p[2].padStart(2, '0')}`) : null; 
+            };
+            const lines = text.split('\n'); 
+            const found = [];
+            lines.forEach(l => { 
+                const m = l.match(dateRegex); 
+                const isZRow = /\sZ[A-Z]?\s/i.test(l) || l.trim().endsWith(' Z') || l.trim().includes(' Z ');
+                if (m && m.length === 2 && !isZRow) { 
+                    const s = normalize(m[0]), e = normalize(m[1]);
+                    if (!s || !e) return;
+                    let cleanLine = l;
+                    m.forEach(match => cleanLine = cleanLine.replace(match, ' '));
+                    const tokens = cleanLine.trim().split(/\s+/).filter(t => t.length > 0);
+                    const numericTokens = tokens.filter(t => !isNaN(parseInt(t)) && /^\d+$/.test(t));
+                    let ptsValue = 0;
+                    if (numericTokens.length >= 2 && numericTokens.length <= 4) {
+                        const rawPts = parseInt(numericTokens[0]);
+                        const rawTd = parseInt(numericTokens[1]);
+                        ptsValue = (rawTd > 5) ? 0 : rawPts;
+                    } else if (numericTokens.length >= 5) {
+                        ptsValue = parseInt(numericTokens[0]);
+                    } else if (numericTokens.length === 1) {
+                        ptsValue = parseInt(numericTokens[0]);
+                    }
+                    if (s && e && (ptsValue >= 0)) { 
+                        found.push({ id: Date.now() + Math.random(), desc: `Imported`, start: s, end: e, manualDays: ptsValue }); 
+                    } 
+                } 
+            });
+            if (found.length > 0) { 
+                document.getElementById('periods-container').innerHTML = ''; 
+                periods = found; 
+                periods.forEach(p => addPeriod(p)); 
+                const status = document.getElementById('parse-status');
+                const statusText = document.getElementById('parse-status-text');
+                statusText.innerText = `Imported ${found.length} lines`;
+                status.classList.remove('hidden');
+                status.classList.add('flex');
+            }
+            calculate();
+        }
+
+        window.onload = () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('ref-date-1825').value = today;
+            document.getElementById('auditor-ref-date').value = today;
+            document.getElementById('scod-year').value = new Date().getFullYear();
+            addPeriod(); 
+            addPeriod1825();
+            showView('home');
+        };
+    </script>
+</body>
+</html>
